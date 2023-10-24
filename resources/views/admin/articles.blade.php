@@ -54,8 +54,9 @@
                                     </div>
                                 </td>
                                 <td class="border-bottom-0 d-flex gap-2">
-                                    <a class="btn btn-info btn-sm" href="{{ route('articles.create') }}">
-                                        <i class="ti ti-edit"></i>
+                                    <a class="btn btn-info btn-sm"
+                                        href="{{ route('articles.show', ['blog' => $item->slug]) }}">
+                                        <i class="ti ti-eye"></i>
                                     </a>
                                     <form action="{{ route('articles.delete', ['blog' => $item->slug]) }}" method="post">
                                         @csrf

@@ -86,4 +86,9 @@ class BlogController extends Controller
             return redirect()->back()->withInput()->withErrors(['error' => config('app.env') == "local" ? $th->getMessage() : 'Delete article is failed!']);
         }
     }
+    public function show(Blog $blog)
+    {
+        $article = $blog->load('category');
+        return view('admin.articles_show', compact('article'));
+    }
 }

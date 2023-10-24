@@ -25,12 +25,14 @@ Route::controller(AuthController::class)->prefix('/accounts')->middleware('guest
 });
 Route::prefix('/admins')->middleware('auth')->group(function () {
     Route::post('accounts/logout', [AuthController::class, 'logout'])->name('logout');
+
     Route::controller(BlogController::class)->group(function () {
         Route::get('/dashboard', 'adminDashboard')->name('dashboard');
         Route::get('/articles', 'index')->name('articles');
         Route::get('/articles/new', 'create')->name('articles.create');
         Route::post('/articles/save', 'store')->name('articles.store');
         Route::delete('/articles/{blog:slug}/delete', 'destroy')->name('articles.delete');
+        Route::get('/articles/{blog:slug}/show', 'show')->name('articles.show');
         Route::get('/articles/{blog:slug}/edit', 'edit')->name('articles.edit');
     });
 });
